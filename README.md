@@ -44,7 +44,7 @@ or alternatively, using the other waypoint as reference
   = *a* × (*t* - *t*<sub>1</sub>) + *s*<sub>1</sub>
 
 If *s*<sub>0</sub> and *s*<sub>1</sub> are on different sides of the speed
-limit *s*<sub>*l*</sub>, the *s* will reach *s*<sub>*l*</sub> at time
+limit *s*<sub>*l*</sub>, the speed *s* will reach *s*<sub>*l*</sub> at time
 *t*<sub>*l*</sub> such that
 
   *s*(*t*<sub>*l*</sub>) = *s*<sub>*l*</sub>
@@ -54,12 +54,11 @@ limit *s*<sub>*l*</sub>, the *s* will reach *s*<sub>*l*</sub> at time
 
 or, using the other waypoint:
 
-*t*<sub>l</sub> = *t*<sub>1</sub> + (*s*<sub>*l*)</sub> - s<sub>1) / *a*
+*t*<sub>l</sub> = *t*<sub>1</sub> + (*s*<sub>*l*</sub> - s<sub>1</sub>) / *a*
 
 This allows us to calculate for how long the driver was over the speed limit,
-if application.  In the code we use the variable *dur* to calculate the
-relative duration rather than absolute times; this is what is interesting to
-us.
+(if at all).  In the code we use the variable *dur* to calculate the relative
+duration rather than absolute times; this is what is interesting to us.
 
 We also want to calculate the distance covered while speeding, this can again
 be done by integrating:
@@ -67,7 +66,7 @@ be done by integrating:
   *d* = ∫<sub>*t*<sub>*l*</sub></sub>*s*(*t*) d*t*
   = ∫<sub>*t*<sub>*l*</sub></sub>*at* d*t*
   = *s*<sub>*l*</sub>(*t* - *t*<sub>*l*</sub>)
-    + *a* × (*t* - *t*<sub>*l*</sub>)<sup>2</sup> / 2
+  + *a* × (*t* - *t*<sub>*l*</sub>)<sup>2</sup> / 2
 
 The code needs to check that the correct conditions are fulfilled before
 applying these formulæ, and the tests define all the special cases that need to
