@@ -19,38 +19,33 @@ class Waypoint
     s_l = speed_limit
     t0 = timestamp
     t1 = other.timestamp
-    s0, s1 = s1, s0 if s0 > s1 # Ensure s0 < s1
-    if s1 <= s_l
+    total_duration = t1 - t0
+    if total_duration == 0
+      total_distance = 0
       dur = 0
-      distance = 0
-
-      total_duration = t1 - t0
-      if total_duration == 0
-        total_distance = 0
-      else
-        a = (s1 - s0) / total_duration
-        total_distance = s0 * total_duration + a * total_duration**2 / 2
-      end
+      dist = 0
     else
-      if s0 == s1
-        dur = t1 - t0
-        distance = s0 * dur
+      s0, s1 = s1, s0 if s0 > s1 # Ensure s0 < s1
+      a = (s1 - s0) / total_duration # Acceleration
+      total_distance = s0 * total_duration + a * total_duration**2 / 2
+
+      if s1 <= s_l # Always under the speed limit
+        dur = 0
+        dist = 0
       else
-        if t0 == t1
-          dur = 0
-          distance = 0
-        else
-          acceleration = (s1 - s0) / (t1 - t0)
+        if s0 == s1 # Always above the speed limit
+          dur = total_duration
+          dist = s0 * dur
+        else # Speed limit is crossed between the two waypoints
           s_l = s0 if s0 > s_l
-          dur = (s1 - s_l) / acceleration
-          distance = s_l * dur + acceleration * dur**2 / 2
-          total_distance = s0 * (t1 - t0) + acceleration * (t1 - t0)**2 / 2
+          dur = (s1 - s_l) / a
+          dist = s_l * dur + a * dur**2 / 2
         end
       end
     end
 
-  SpeedingDataPoint.new(duration: dur, distance: distance,
-    total_duration: t1 - t0, total_distance: total_distance)
+  SpeedingDataPoint.new(duration: dur, distance: dist,
+    total_duration: total_duration, total_distance: total_distance)
   end
 end
 
