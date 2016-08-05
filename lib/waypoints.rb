@@ -27,7 +27,7 @@ class Waypoint
     else
       s0, s1 = s1, s0 if s0 > s1 # Ensure s0 < s1
       a = (s1 - s0) / total_duration # Acceleration
-      total_distance = s0 * total_duration + a * total_duration**2 / 2
+      total_distance = (s0 + a * total_duration / 2) * total_duration
 
       if s1 <= s_l # Always under the speed limit
         dur = 0
@@ -39,7 +39,7 @@ class Waypoint
         else # Speed limit is crossed between the two waypoints
           s_l = s0 if s0 > s_l
           dur = (s1 - s_l) / a
-          dist = s_l * dur + a * dur**2 / 2
+          dist = (s_l + a * dur / 2) * dur
         end
       end
     end

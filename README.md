@@ -66,6 +66,7 @@ be done by integrating:
   dist = ∫<sub>*t*<sub>*l*</sub></sub>*s*(*t*) d*t*
   = ∫<sub>*t*<sub>*l*</sub></sub>(*s*<sub>l</sub> + *at*) d*t*
   = *s*<sub>*l*</sub>(*t* - *t*<sub>*l*</sub>) + *a* × (*t* - *t*<sub>*l*</sub>)<sup>2</sup> / 2
+  = (*s*<sub>*l*</sub> + *a* × (*t* - *t*<sub>*l*</sub>) / 2) × (*t* - *t*<sub>*l*</sub>)
 
 The code needs to check that the correct conditions are fulfilled before
 applying these formulæ, and the tests specify special cases that need to be
