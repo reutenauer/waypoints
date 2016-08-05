@@ -65,8 +65,7 @@ be done by integrating:
 
   *d* = ∫<sub>*t*<sub>*l*</sub></sub>*s*(*t*) d*t*
   = ∫<sub>*t*<sub>*l*</sub></sub>*at* d*t*
-  = *s*<sub>*l*</sub>(*t* - *t*<sub>*l*</sub>)
-  + *a* × (*t* - *t*<sub>*l*</sub>)<sup>2</sup> / 2
+  = *s*<sub>*l*</sub>(*t* - *t*<sub>*l*</sub>) + *a* × (*t* - *t*<sub>*l*</sub>)<sup>2</sup> / 2
 
 The code needs to check that the correct conditions are fulfilled before
 applying these formulæ, and the tests define all the special cases that need to
