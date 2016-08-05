@@ -13,7 +13,7 @@ results, rounded to two decimals:
   * Duration spent speeding: 11.76s
   * Distance covered while speeding: 115.40m
   * Total duration: 20s
-  * Total distance covered: 139.27m
+  * Total distance covered: 180.9m
 
 ## How it works
 I’ve taken the view that a linear interpolation of the speed between two

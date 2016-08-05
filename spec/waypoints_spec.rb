@@ -156,6 +156,7 @@ describe InsuranceMapReduce do
       expect(total_durations).to eq [5.0, 5.0, 5.0, 5.0]
       total_distances = speeding_data.map { |segment| segment.total_distance }
       expect(total_distances.first).to eq 39.47225
+      expect(total_distances.last).to eq 41.625
     end
   end
 
@@ -166,7 +167,7 @@ describe InsuranceMapReduce do
       expect(summary.duration.round(2)).to eq 11.76
       expect(summary.distance.round(2)).to eq 115.4
       expect(summary.total_duration.round(2)).to eq 20.0
-      expect(summary.total_distance.round(2)).to eq 139.27
+      expect(summary.total_distance.round(2)).to eq 180.9
     end
   end
 end
