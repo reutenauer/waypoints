@@ -66,7 +66,14 @@ describe Waypoint do
 end
 
 describe SpeedingDataPoint do
-  let(:spd) { SpeedingDataPoint.new(duration: 5, distance: 15) }
+  let(:spd) {
+    SpeedingDataPoint.new(
+      duration: 5,
+      distance: 15,
+      total_duration: 10,
+      total_distance: 25
+    )
+  }
 
   describe ".new" do
     it "instantiates a new SpeedingDataPoint object" do
@@ -81,6 +88,14 @@ describe SpeedingDataPoint do
     it "defines a distance" do
       expect(spd.distance).to eq 15
     end
+
+    it "defines a total duration" do
+      expect(spd.total_duration).to eq 10
+    end
+
+    it "defines a total distance" do
+      expect(spd.total_distance).to eq 25
+    end
   end
 
   describe "#add_duration" do
@@ -94,6 +109,20 @@ describe SpeedingDataPoint do
     it "adds to the distance" do
       spd.add_distance(10)
       expect(spd.distance).to eq 25
+    end
+  end
+
+  describe "#add_total_duration" do
+    it "adds to the total duration" do
+      spd.add_total_duration(15)
+      expect(spd.total_duration).to eq 25
+    end
+  end
+
+  describe "#add_total_distance" do
+    it "adds to the total distance" do
+      spd.add_total_distance(15)
+      expect(spd.total_distance).to eq 40
     end
   end
 end
@@ -123,6 +152,10 @@ describe InsuranceMapReduce do
       expect(durations.map { |s| s.round(2) }).to eq [1.78, 5.00, 4.98, 0.0]
       distances = speeding_data.map { |segment| segment.distance }
       expect(distances.map { |d| d.round(2) }).to eq [15.75, 51.25, 48.4, 0.0]
+      total_durations = speeding_data.map { |segment| segment.total_duration }
+      expect(total_durations).to eq [5.0, 5.0, 5.0, 5.0]
+      total_distances = speeding_data.map { |segment| segment.total_distance }
+      expect(total_distances.first).to eq 39.47225
     end
   end
 
@@ -132,6 +165,8 @@ describe InsuranceMapReduce do
       expect(summary).to be_a SpeedingDataPoint
       expect(summary.duration.round(2)).to eq 11.76
       expect(summary.distance.round(2)).to eq 115.4
+      expect(summary.total_duration.round(2)).to eq 20.0
+      expect(summary.total_distance.round(2)).to eq 139.27
     end
   end
 end
