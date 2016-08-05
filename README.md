@@ -1,7 +1,7 @@
 # A solution to the Waypoints challenge
 
 ## Installation
-This solution is Written in Ruby.  It should be enough to have RSpec installed
+This solution is written in Ruby.  It should be enough to have RSpec installed
 and run `rspec` in the top-level directory (here) to see the main test cases;
 if needed, a Gemfile is provided, so that one can run `bundle` to install the
 appropriate dependencies.
@@ -56,17 +56,25 @@ or, using the other waypoint:
 
 *t*<sub>l</sub> = *t*<sub>1</sub> + (*s*<sub>*l*</sub> - s<sub>1</sub>) / *a*
 
-This allows us to calculate for how long the driver was over the speed limit,
+This allows us to calculate for how long the driver was over the speed limit
 (if at all).  In the code we use the variable *dur* to calculate the relative
 duration rather than absolute times; this is what is interesting to us.
 
 We also want to calculate the distance covered while speeding, this can again
 be done by integrating:
 
-  dist = ∫<sub>*t*<sub>*l*</sub></sub>*s*(*t*) d*t*
+  *dist* = ∫<sub>*t*<sub>*l*</sub></sub>*s*(*t*) d*t*
   = ∫<sub>*t*<sub>*l*</sub></sub>(*s*<sub>l</sub> + *at*) d*t*
   = *s*<sub>*l*</sub>(*t* - *t*<sub>*l*</sub>) + *a* × (*t* - *t*<sub>*l*</sub>)<sup>2</sup> / 2
   = (*s*<sub>*l*</sub> + *a* × (*t* - *t*<sub>*l*</sub>) / 2) × (*t* - *t*<sub>*l*</sub>)
+
+and at that point of the code *t* - *t*<sub>*l*</sub> will be assigned to
+*dur*, hence
+
+  *dist* = (*s*<sub>*l*</sub> + *a* × *dur* / 2) × *dur*
+
+We have a similar formula for the total distance covered (regardless of whether
+the driver was speeding or not).
 
 The code needs to check that the correct conditions are fulfilled before
 applying these formulæ, and the tests specify special cases that need to be
