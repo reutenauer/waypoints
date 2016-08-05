@@ -24,20 +24,20 @@ class Waypoint
       SpeedingDataPoint.new(duration: 0, distance: 0)
     else
       if s0 == s1
-        t = t1 - t0
-        distance = s0 * t
+        dur = t1 - t0
+        distance = s0 * dur
       else
         if t0 == t1
-          t = 0
+          dur = 0
           distance = 0
         else
           acceleration = (s1 - s0) / (t1 - t0)
           s_l = s0 if s0 > s_l
-          t = (s1 - s_l) / acceleration
-          distance = s0 * t + acceleration * t**2 / 2
+          dur = (s1 - s_l) / acceleration
+          distance = s_l * dur + acceleration * dur**2 / 2
         end
       end
-      SpeedingDataPoint.new(duration: t, distance: distance)
+      SpeedingDataPoint.new(duration: dur, distance: distance)
     end
   end
 end
