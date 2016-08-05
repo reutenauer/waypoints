@@ -21,11 +21,12 @@ class Waypoint
     t1 = other.timestamp
     s0, s1 = s1, s0 if s0 > s1 # Ensure s0 < s1
     if s1 <= s_l
+      dur = 0
+      distance = 0
+
       total_duration = t1 - t0
       a = (s1 - s0) / total_duration
       total_distance = s0 * total_duration + a * total_duration**2 / 2
-      SpeedingDataPoint.new(duration: 0, distance: 0,
-        total_duration: total_duration, total_distance: total_distance)
     else
       if s0 == s1
         dur = t1 - t0
@@ -42,9 +43,10 @@ class Waypoint
           total_distance = s0 * (t1 - t0) + acceleration * (t1 - t0)**2 / 2
         end
       end
-      SpeedingDataPoint.new(duration: dur, distance: distance,
-        total_duration: t1 - t0, total_distance: total_distance)
     end
+
+  SpeedingDataPoint.new(duration: dur, distance: distance,
+    total_duration: t1 - t0, total_distance: total_distance)
   end
 end
 
