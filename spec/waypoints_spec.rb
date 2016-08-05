@@ -36,6 +36,21 @@ describe Waypoint do
       expect(stats.duration).to eq 2
     end
 
+    it "returns 0 for the total duration and distance when the two waypoints have the same timestamp" do
+      w0 = Waypoint.new(timestamp: '2016-08-05T12:00:10.000Z', speed: 1, speed_limit: 3)
+      w1 = Waypoint.new(timestamp: '2016-08-05T12:00:10.000Z', speed: 2, speed_limit: 3)
+      stats = w0.interpolate(w1)
+      expect(stats.total_duration).to eq 0
+      expect(stats.total_distance).to eq 0
+    end
+
+    it "computes the total distance correctly" do
+      w0 = Waypoint.new(timestamp: '2016-08-05T12:00:00.000Z', speed: 5, speed_limit: 15)
+      w1 = Waypoint.new(timestamp: '2016-08-05T12:00:05.000Z', speed: 10, speed_lmit: 15)
+      stats = w0.interpolate(w1)
+      expect(stats.total_distance).to eq 37.5
+    end
+
     it "returns 0 when interpolating between a waypoint and itself" do
       t = '2016-07-23T12:00:20.000Z'
       w = Waypoint.new(timestamp: t, speed: 15, speed_limit: 2)
@@ -44,7 +59,7 @@ describe Waypoint do
       expect(stats.distance).to eq 0
     end
 
-    it "returns 0 when two waypoints have the same timestamp" do
+    it "returns 0 when the two waypoints have the same timestamp" do
       t = '2016-07-23T12:00:25.000Z'
       w0 = Waypoint.new(timestamp: t, speed: 10, speed_limit: 5)
       w1 = Waypoint.new(timestamp: t, speed: 15, speed_limit: 5)

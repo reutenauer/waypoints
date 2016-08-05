@@ -25,8 +25,12 @@ class Waypoint
       distance = 0
 
       total_duration = t1 - t0
-      a = (s1 - s0) / total_duration
-      total_distance = s0 * total_duration + a * total_duration**2 / 2
+      if total_duration == 0
+        total_distance = 0
+      else
+        a = (s1 - s0) / total_duration
+        total_distance = s0 * total_duration + a * total_duration**2 / 2
+      end
     else
       if s0 == s1
         dur = t1 - t0

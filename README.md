@@ -68,8 +68,8 @@ be done by integrating:
   = *s*<sub>*l*</sub>(*t* - *t*<sub>*l*</sub>) + *a* × (*t* - *t*<sub>*l*</sub>)<sup>2</sup> / 2
 
 The code needs to check that the correct conditions are fulfilled before
-applying these formulæ, and the tests define all the special cases that need to
-be covered (when acceleration is 0, etc.)  One case that is not covered is when
+applying these formulæ, and the tests specify special cases that need to be
+covered (when acceleration is 0, etc.)  One case that is not covered is when
 the speed limit is different at both waypoints: in this case, the code will
 return results that are possibly inconsistent.  This doesn’t however happen
 with the data provided.
