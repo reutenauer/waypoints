@@ -64,7 +64,7 @@ We also want to calculate the distance covered while speeding, this can again
 be done by integrating:
 
   *d* = ∫<sub>*t*<sub>*l*</sub></sub>*s*(*t*) d*t*
-  = ∫<sub>*t*<sub>*l*</sub></sub>*at* d*t*
+  = ∫<sub>*t*<sub>*l*</sub></sub>(*s*<sub>l</sub> + *at*) d*t*
   = *s*<sub>*l*</sub>(*t* - *t*<sub>*l*</sub>) + *a* × (*t* - *t*<sub>*l*</sub>)<sup>2</sup> / 2
 
 The code needs to check that the correct conditions are fulfilled before
