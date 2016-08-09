@@ -44,17 +44,17 @@ or alternatively, using the other waypoint as reference
   = *a* × (*t* - *t*<sub>1</sub>) + *s*<sub>1</sub>
 
 If *s*<sub>0</sub> and *s*<sub>1</sub> are on different sides of the speed
-limit *s*<sub>*l*</sub>, the speed *s* will reach *s*<sub>*l*</sub> at time
-*t*<sub>*l*</sub> such that
+limit *s*<sub>*ℓ*</sub>, the speed *s* will reach *s*<sub>*ℓ*</sub> at time
+*t*<sub>*ℓ*</sub> such that
 
-  *s*(*t*<sub>*l*</sub>) = *s*<sub>*l*</sub>
-  ⇔ *a* × (*t*<sub>l</sub> - *t*<sub>0</sub>) + *s*<sub>0</sub> = *s*<sub>*l*</sub>
-  ⇔ *t*<sub>l</sub> - *t*<sub>0</sub> = (*s*<sub>*l*</sub> - *s*<sub>0</sub>) / *a*
-  ⇔ *t*<sub>l</sub> = *t*<sub>0</sub> + (*s*<sub>*l*</sub> - *s*<sub>0</sub>) / *a*
+  *s*(*t*<sub>*ℓ*</sub>) = *s*<sub>*ℓ*</sub>
+  ⇔ *a* × (*t*<sub>l</sub> - *t*<sub>0</sub>) + *s*<sub>0</sub> = *s*<sub>*ℓ*</sub>
+  ⇔ *t*<sub>l</sub> - *t*<sub>0</sub> = (*s*<sub>*ℓ*</sub> - *s*<sub>0</sub>) / *a*
+  ⇔ *t*<sub>l</sub> = *t*<sub>0</sub> + (*s*<sub>*ℓ*</sub> - *s*<sub>0</sub>) / *a*
 
 or, using the other waypoint:
 
-*t*<sub>l</sub> = *t*<sub>1</sub> + (*s*<sub>*l*</sub> - s<sub>1</sub>) / *a*
+*t*<sub>l</sub> = *t*<sub>1</sub> + (*s*<sub>*ℓ*</sub> - s<sub>1</sub>) / *a*
 
 This allows us to calculate for how long the driver was over the speed limit
 (if at all).  In the code we use the variable *dur* to calculate the relative
@@ -63,15 +63,15 @@ duration rather than absolute times; this is what is interesting to us.
 We also want to calculate the distance covered while speeding, this can again
 be done by integrating:
 
-  *dist* = ∫<sub>*t*<sub>*l*</sub></sub>*s*(*t*) d*t*
-  = ∫<sub>*t*<sub>*l*</sub></sub>(*s*<sub>l</sub> + *at*) d*t*
-  = *s*<sub>*l*</sub>(*t* - *t*<sub>*l*</sub>) + *a* × (*t* - *t*<sub>*l*</sub>)<sup>2</sup> / 2
-  = (*s*<sub>*l*</sub> + *a* × (*t* - *t*<sub>*l*</sub>) / 2) × (*t* - *t*<sub>*l*</sub>)
+  *dist* = ∫<sub>*t*<sub>*ℓ*</sub></sub>*s*(*t*) d*t*
+  = ∫<sub>*t*<sub>*ℓ*</sub></sub>(*s*<sub>l</sub> + *at*) d*t*
+  = *s*<sub>*ℓ*</sub>(*t* - *t*<sub>*ℓ*</sub>) + *a* × (*t* - *t*<sub>*ℓ*</sub>)<sup>2</sup> / 2
+  = (*s*<sub>*ℓ*</sub> + *a* × (*t* - *t*<sub>*ℓ*</sub>) / 2) × (*t* - *t*<sub>*ℓ*</sub>)
 
-and at that point of the code *t* - *t*<sub>*l*</sub> will be assigned to
+and at that point of the code *t* - *t*<sub>*ℓ*</sub> will be assigned to
 *dur*, hence
 
-  *dist* = (*s*<sub>*l*</sub> + *a* × *dur* / 2) × *dur*
+  *dist* = (*s*<sub>*ℓ*</sub> + *a* × *dur* / 2) × *dur*
 
 We have a similar formula for the total distance covered (regardless of whether
 the driver was speeding or not).
