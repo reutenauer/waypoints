@@ -48,13 +48,13 @@ limit *s*<sub>*ℓ*</sub>, the speed *s* will reach *s*<sub>*ℓ*</sub> at time
 *t*<sub>*ℓ*</sub> such that
 
   *s*(*t*<sub>*ℓ*</sub>) = *s*<sub>*ℓ*</sub>
-  ⇔ *a* × (*t*<sub>l</sub> - *t*<sub>0</sub>) + *s*<sub>0</sub> = *s*<sub>*ℓ*</sub>
-  ⇔ *t*<sub>l</sub> - *t*<sub>0</sub> = (*s*<sub>*ℓ*</sub> - *s*<sub>0</sub>) / *a*
-  ⇔ *t*<sub>l</sub> = *t*<sub>0</sub> + (*s*<sub>*ℓ*</sub> - *s*<sub>0</sub>) / *a*
+  ⇔ *a* × (*t*<sub>ℓ</sub> - *t*<sub>0</sub>) + *s*<sub>0</sub> = *s*<sub>*ℓ*</sub>
+  ⇔ *t*<sub>ℓ</sub> - *t*<sub>0</sub> = (*s*<sub>*ℓ*</sub> - *s*<sub>0</sub>) / *a*
+  ⇔ *t*<sub>ℓ</sub> = *t*<sub>0</sub> + (*s*<sub>*ℓ*</sub> - *s*<sub>0</sub>) / *a*
 
 or, using the other waypoint:
 
-*t*<sub>l</sub> = *t*<sub>1</sub> + (*s*<sub>*ℓ*</sub> - s<sub>1</sub>) / *a*
+*t*<sub>ℓ</sub> = *t*<sub>1</sub> + (*s*<sub>*ℓ*</sub> - s<sub>1</sub>) / *a*
 
 This allows us to calculate for how long the driver was over the speed limit
 (if at all).  In the code we use the variable *dur* to calculate the relative
@@ -64,7 +64,7 @@ We also want to calculate the distance covered while speeding, this can again
 be done by integrating:
 
   *dist* = ∫<sub>*t*<sub>*ℓ*</sub></sub>*s*(*t*) d*t*
-  = ∫<sub>*t*<sub>*ℓ*</sub></sub>(*s*<sub>l</sub> + *at*) d*t*
+  = ∫<sub>*t*<sub>*ℓ*</sub></sub>(*s*<sub>ℓ</sub> + *at*) d*t*
   = *s*<sub>*ℓ*</sub>(*t* - *t*<sub>*ℓ*</sub>) + *a* × (*t* - *t*<sub>*ℓ*</sub>)<sup>2</sup> / 2
   = (*s*<sub>*ℓ*</sub> + *a* × (*t* - *t*<sub>*ℓ*</sub>) / 2) × (*t* - *t*<sub>*ℓ*</sub>)
 
